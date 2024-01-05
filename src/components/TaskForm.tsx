@@ -1,17 +1,12 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-// TaskForm.tsx
-// TaskForm.tsx
+// components/TaskForm.tsx
 import React, { useState } from 'react';
-import { Task } from '../types';
+import { useTaskContext } from '../context/TaskContext';
+import { Task } from '@_types/task';
 
-interface TaskFormProps {
-  onAddTask: (task: Task) => void;
-}
-
-const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
+const TaskForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState<'high' | 'medium' | 'low'>('medium');
+  const { dispatch } = useTaskContext();
 
   const handleAddTask = () => {
     if (title) {
@@ -21,7 +16,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
         priority,
         status: 'Added',
       };
-      onAddTask(newTask);
+      dispatch({ type: 'ADD_TASK', payload: newTask });
       setTitle('');
       setPriority('medium');
     }
