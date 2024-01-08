@@ -1,24 +1,26 @@
-// App.tsx
 import React from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
 import { TaskProvider } from './context/TaskContext';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 const App: React.FC = () => {
+  const onDragEnd = (result: DropResult) => {
+    console.log(result);
+  };
+
   return (
     <TaskProvider>
-      <DndProvider backend={HTML5Backend}>
-        <div style={{ display: 'flex', flexDirection:"column" }}>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <TaskForm />
-          <div style={{display: "flex", justifyContent: "center"}}>
-          <TaskList title="Added" />
-          <TaskList title="Started" />
-          <TaskList title="Completed" />
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <TaskList title="Added" />
+            <TaskList title="Started" />
+            <TaskList title="Completed" />
           </div>
         </div>
-      </DndProvider>
+      </DragDropContext>
     </TaskProvider>
   );
 };

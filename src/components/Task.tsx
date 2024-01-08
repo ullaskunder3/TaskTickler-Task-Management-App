@@ -1,25 +1,17 @@
-// Task.tsx
-import React, { useEffect, useState } from 'react';
-import { useDrag } from 'react-dnd';
+// components/Task.tsx
+import React, { useState } from 'react';
 import { useTaskContext } from '../context/TaskContext';
-import { ItemTypes } from '@_types/task';
+import { DraggableProvided } from 'react-beautiful-dnd';
 import { Task as tyTask } from '@_types/task';
 import TaskModal from './TaskModal';
 
 interface TaskProps {
   task: tyTask;
+  provided: DraggableProvided;
 }
 
-const Task: React.FC<TaskProps> = ({ task }) => {
-  const [{ isDragging }, drag] = useDrag({
-    type: ItemTypes.TASK,
-    item: { id: task.id },
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-    }),
-  });
-
-  const { dispatch, tasks } = useTaskContext();
+const Task: React.FC<TaskProps> = ({ task, provided }) => {
+  const { dispatch } = useTaskContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onClickOpen = () => {
@@ -35,34 +27,28 @@ const Task: React.FC<TaskProps> = ({ task }) => {
     closeModal();
   };
 
-  useEffect(() => {
-    console.log('Updated tasks:', tasks);
-  }, [tasks]);
-
   return (
     <div
-      ref={drag}
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-        cursor: 'move',
-        border: '1px solid #ccc',
-        padding: '8px',
-        margin: '8px',
-        backgroundColor: isDragging ? '#555' : '#ff3c3c',
-        borderRadius: '4px',
-        height: "7rem",
-        overflow: "auto"
-      }}
+    ref={provided.innerRef}
+    {...provided.draggableProps}
+    {...provided.dragHandleProps}
+    style={{
+      cursor: 'move',
+      border: '1px solid #ccc',
+      padding: '8px',
+      margin: '8px',
+      backgroundColor: '#555',
+      borderRadius: '4px',
+      height: "7rem",
+      overflow: "auto"
+    }}
     >
       <div onClick={onClickOpen} style={{ cursor: 'pointer' }}>
         <strong>{task.title}</strong> - Priority: {task.priority}
       </div>
-      {isModalOpen && (
-        <TaskModal task={task} onUpdateTask={handleUpdateTask} onClose={closeModal} />
-      )}
+      {isModalOpen && <TaskModal task={task} onUpdateTask={handleUpdateTask} onClose={closeModal} />}
     </div>
   );
 };
 
 export default Task;
-
