@@ -3,7 +3,7 @@
     margin: 3rem auto;
 }
 
-@media (width <640px) {
+@media (width < 640px) {
     .layout__wrapper {
         padding-inline: 20px;
     }
@@ -12,6 +12,11 @@
 @media (min-width: 640px) {
     .layout__wrapper {
         width: 75%;
+    }
+}
+@media (width > 960px) {
+    .layout__wrapper {
+        width: 50%;
     }
 }
 
