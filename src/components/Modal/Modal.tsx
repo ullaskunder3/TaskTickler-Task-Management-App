@@ -1,3 +1,4 @@
+import "./Modal.css";
 interface ModalProps {
     newItemName: string;
     handleNewItemChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

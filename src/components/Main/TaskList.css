@@ -1,0 +1,121 @@
+.low-priority {
+    background-color: lightgreen;
+}
+
+.medium-priority {
+    background-color: lightblue;
+}
+
+.high-priority {
+    background-color: lightcoral;
+}
+
+.task-container__wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px none rgb(0, 0, 0);
+    font: 14px / 21px Karla, sans-serif;
+    vertical-align: baseline;
+    list-style-type: none;
+    overflow-anchor: none;
+}
+
+.task-container {
+    text-align: center;
+    padding-block: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    box-sizing: border-box;
+    margin: 0px;
+    border: 0px none rgb(0, 0, 0);
+    font: 14px / 21px Karla, sans-serif;
+    vertical-align: baseline;
+    list-style-type: none;
+}
+
+.task-container h3 {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px none rgb(0, 0, 0);
+    font: 14px / 21px Karla, sans-serif;
+    vertical-align: baseline;
+    list-style-type: none;
+}
+
+.items-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px none rgb(0, 0, 0);
+    font: 14px / 21px Karla, sans-serif;
+    vertical-align: baseline;
+    list-style-type: none;
+}
+
+.items-container__wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px none rgb(0, 0, 0);
+    font: 14px / 21px Karla, sans-serif;
+    vertical-align: baseline;
+    list-style-type: none;
+    color: rgb(0, 0, 0);
+}
+
+.item-container {
+    padding: 1.4rem;
+    margin: 1rem;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.btn {
+    width: calc(100% - 28px);
+    cursor: pointer;
+    outline: rgb(0, 0, 0) none 0px;
+    border: 0px none rgb(0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px 0px;
+    padding: 14px;
+    margin: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    list-style-type: none;
+    font-weight: 600;
+}
+
+.modal-container {
+    background-color: #000000;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+
+    width: 50%;
+    height: 50%;
+    z-index: 10000;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+@media (width<500px) {
+    .modal-container {
+        width: 80%;
+    }
+}

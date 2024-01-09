@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { DragDropContext, Draggable, DropResult } from "react-beautiful-dnd";
 import { StrictModeDroppable as Droppable } from "@helpers/StrictModeDroppable";
 import { v4 as uuidv4 } from 'uuid';
-import { Store } from "src/types/task";
+import { TaskProps } from "src/types/task";
 import TaskList from "./TaskList";
 import { getDataFromLocalStorage } from "@helpers/get_localStoredData";
 import { setDataToLocalStorage } from "@helpers/set_localStoredData";
+import "./Main.css"
 
 const LOCAL_STORAGE_KEY = "task-list-storage-key";
 
-const DATA: Store[] = [
+const DATA: TaskProps[] = [
     {
       id: "0e2f0db1-5457-46b0-949e-8032d2f9997a",
       name: "Added",
@@ -41,30 +42,30 @@ const DATA: Store[] = [
   
   
 function Main(): JSX.Element {
-    const [stores, setStores] = useState<Store[]>(getDataFromLocalStorage(LOCAL_STORAGE_KEY) || DATA);
+    const [tasks, setTask] = useState<TaskProps[]>(getDataFromLocalStorage(LOCAL_STORAGE_KEY) || DATA);
 
     useEffect(() => {
         const storedData = getDataFromLocalStorage(LOCAL_STORAGE_KEY);
         if (storedData) {
-            setStores(storedData);
+            setTask(storedData);
         }
     }, []);
 
     useEffect(() => {
-        setDataToLocalStorage(LOCAL_STORAGE_KEY, stores);
-    }, [stores]);
+        setDataToLocalStorage(LOCAL_STORAGE_KEY, tasks);
+    }, [tasks]);
 
-    const handleAddItem = (storeId: string, itemName: string, priority: 'low' | 'medium' | 'high') => {
+    const handleAddItem = (taskId: string, itemName: string, priority: 'low' | 'medium' | 'high') => {
         const newItemId = uuidv4();
 
-        const storeIndex = stores.findIndex((store) => store.id === storeId);
+        const taskIndex = tasks.findIndex((task) => task.id === taskId);
 
-        if (storeIndex !== -1) {
+        if (taskIndex !== -1) {
             const newItem = { id: newItemId, name: itemName, priority: priority };
 
-            const newStores = [...stores];
-            newStores[storeIndex].items = [...newStores[storeIndex].items, newItem];
-            setStores(newStores);
+            const newTasks = [...tasks];
+            newTasks[taskIndex].items = [...newTasks[taskIndex].items, newItem];
+            setTask(newTasks);
         }
     };
 
@@ -81,51 +82,48 @@ function Main(): JSX.Element {
             return;
 
         if (type === "group") {
-            const reorderedStores = [...stores];
+            const reorderedTasks = [...tasks];
 
-            const storeSourceIndex = source.index;
-            const storeDestinatonIndex = destination.index;
+            const taskSourceIndex = source.index;
+            const taskDestinatonIndex = destination.index;
 
-            const [removedStore] = reorderedStores.splice(storeSourceIndex, 1);
-            reorderedStores.splice(storeDestinatonIndex, 0, removedStore);
+            const [removedTask] = reorderedTasks.splice(taskSourceIndex, 1);
+            reorderedTasks.splice(taskDestinatonIndex, 0, removedTask);
 
-            return setStores(reorderedStores);
+            return setTask(reorderedTasks);
         }
         const itemSourceIndex = source.index;
         const itemDestinationIndex = destination.index;
 
-        const storeSourceIndex = stores.findIndex(
-            (store) => store.id === source.droppableId
+        const taskSourceIndex = tasks.findIndex(
+            (task) => task.id === source.droppableId
         );
-        const storeDestinationIndex = stores.findIndex(
-            (store) => store.id === destination.droppableId
+        const taskDestinationIndex = tasks.findIndex(
+            (task) => task.id === destination.droppableId
         );
 
-        const newSourceItems = [...stores[storeSourceIndex].items];
+        const newSourceItems = [...tasks[taskSourceIndex].items];
         const newDestinationItems =
             source.droppableId !== destination.droppableId
-                ? [...stores[storeDestinationIndex].items]
+                ? [...tasks[taskDestinationIndex].items]
                 : newSourceItems;
 
         const [deletedItem] = newSourceItems.splice(itemSourceIndex, 1);
         newDestinationItems.splice(itemDestinationIndex, 0, deletedItem);
 
-        const newStores = [...stores];
+        const newTasks = [...tasks];
 
-        newStores[storeSourceIndex] = {
-            ...stores[storeSourceIndex],
+        newTasks[taskSourceIndex] = {
+            ...tasks[taskSourceIndex],
             items: newSourceItems,
         };
-        newStores[storeDestinationIndex] = {
-            ...stores[storeDestinationIndex],
+        newTasks[taskDestinationIndex] = {
+            ...tasks[taskDestinationIndex],
             items: newDestinationItems,
         };
 
-        setStores(newStores);
-    };
-
-    console.log("store", stores);
-    
+        setTask(newTasks);
+    };    
 
     return (
         <div className="layout__wrapper">
@@ -136,12 +134,12 @@ function Main(): JSX.Element {
                 <Droppable droppableId="ROOT" type="group">
                     {(provided) => (
                         <div className="main__task-container" {...provided.droppableProps} ref={provided.innerRef}>
-                            {stores.map((store, index) => (
+                            {tasks.map((task, index) => (
                                 <Draggable
                                     isDragDisabled
-                                    draggableId={store.id}
+                                    draggableId={task.id}
                                     index={index}
-                                    key={store.id}
+                                    key={task.id}
                                 >
                                     {(provided) => (
                                         <div
@@ -150,7 +148,7 @@ function Main(): JSX.Element {
                                             {...provided.draggableProps}
                                             ref={provided.innerRef}
                                         >
-                                            <TaskList {...store} handleAddItem={handleAddItem} />
+                                            <TaskList {...task} handleAddItem={handleAddItem} />
                                         </div>
                                     )}
                                 </Draggable>

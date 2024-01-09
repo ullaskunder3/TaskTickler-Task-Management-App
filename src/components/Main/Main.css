@@ -1,0 +1,42 @@
+.layout__wrapper {
+    border-radius: 3px;
+    margin: 3rem auto;
+}
+
+@media (width <640px) {
+    .layout__wrapper {
+        padding-inline: 20px;
+    }
+}
+
+@media (min-width: 640px) {
+    .layout__wrapper {
+        width: 75%;
+    }
+}
+
+.header {
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.main__task-container {
+    display: flex;
+    gap: 5px;
+}
+
+@media (max-width: 500px) {
+    .main__task-container {
+        flex-direction: column;
+    }
+}
+
+.flex1 {
+    flex: 1;
+    border-width: 2px;
+    border-style: var(--border-style);
+    border-radius: var(--border-radius-500);
+    border-color: var(--border-radius-color);
+}

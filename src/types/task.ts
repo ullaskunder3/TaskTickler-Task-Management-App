@@ -4,7 +4,7 @@ export interface Item {
   priority: "low" | "medium" | "high";
 }
 
-export interface Store {
+export interface TaskProps {
   id: string;
   name: string;
   items: Item[];
@@ -16,7 +16,7 @@ export interface TaskListProps {
   items: Item[];
   id: string;
   handleAddItem: (
-    storeId: string,
+    taskId: string,
     itemName: string,
     priority: "low" | "medium" | "high"
   ) => void;

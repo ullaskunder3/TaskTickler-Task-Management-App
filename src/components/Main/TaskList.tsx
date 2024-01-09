@@ -4,6 +4,7 @@ import { TaskListProps } from "src/types/task";
 import Modal from 'react-modal'
 import { getBackgroundColor } from "@helpers/getBackgroundColor";
 import { ModalUI } from "../Modal/Modal";
+import "./TaskList.css";
 
 function TaskList({ name, items, id, handleAddItem }: TaskListProps): JSX.Element {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,8 +31,8 @@ function TaskList({ name, items, id, handleAddItem }: TaskListProps): JSX.Elemen
         <Droppable droppableId={id}>
             {(provided) => (
                 <div
-                 className="store-container__wrapper" {...provided.droppableProps} ref={provided.innerRef}>
-                    <div className="store-container">
+                 className="task-container__wrapper" {...provided.droppableProps} ref={provided.innerRef}>
+                    <div className="task-container">
                         <h3>{name}</h3>
                     </div>
                     <div className="items-container">
