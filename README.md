@@ -6,6 +6,10 @@ The Task Management App is a web application built using React and React Beautif
 
 ## Preview
 
+🚀 **Published:** [TaskTickler App](https://task-tickler-task-management-app-six.vercel.app/)
+
+Explore the live preview of the TaskTrove Task Management App! Click the link above to experience the drag-and-drop functionality and streamline your tasks
+
 |![Screenshot from 2024-01-09 18-03-31](https://github.com/ullaskunder3/TaskTickler-Task-Management-App/assets/66258652/db75ab74-2e3b-471c-95c3-0b93c189f6da)|![Screenshot from 2024-01-09 18-04-13](https://github.com/ullaskunder3/TaskTickler-Task-Management-App/assets/66258652/5a553414-781e-4fb0-9505-4b79b528cf81)|
 |--|--|
 |![Screenshot from 2024-01-09 18-03-52](https://github.com/ullaskunder3/TaskTickler-Task-Management-App/assets/66258652/fe940f99-a777-404a-8ac7-bb191345e115)|-😄-|
