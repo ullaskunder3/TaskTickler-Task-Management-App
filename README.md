@@ -4,6 +4,12 @@
 
 The Task Management App is a web application built using React and React Beautiful DND for managing tasks and their associated items through an intuitive drag-and-drop interface. The app allows users to organize tasks into different categories, add new items to each task, and reorder tasks as needed.
 
+## Preview
+
+|![Screenshot from 2024-01-09 18-03-31](https://github.com/ullaskunder3/TaskTickler-Task-Management-App/assets/66258652/db75ab74-2e3b-471c-95c3-0b93c189f6da)|![Screenshot from 2024-01-09 18-04-13](https://github.com/ullaskunder3/TaskTickler-Task-Management-App/assets/66258652/5a553414-781e-4fb0-9505-4b79b528cf81)|
+|--|--|
+|![Screenshot from 2024-01-09 18-03-52](https://github.com/ullaskunder3/TaskTickler-Task-Management-App/assets/66258652/fe940f99-a777-404a-8ac7-bb191345e115)|-😄-|
+
 ## Project Structure
 
 The project follows a modular structure to enhance maintainability and readability. Here's a brief overview of the main directories and files:
